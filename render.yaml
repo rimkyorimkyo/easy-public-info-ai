@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: easy-public-info-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /api/samples
+    envVars:
+      - key: GLM_API_KEY
+        sync: false
+      - key: GLM_API_BASE
+        value: https://open.bigmodel.cn/api/paas/v4/chat/completions
+      - key: GLM_MODEL
+        value: glm-4-flash
